@@ -15,7 +15,7 @@
 
 @implementation ConnectionManager
 
-static const double PRUNE = 30.0;
+//static const double PRUNE = 30.0;
 
 - (id)init{
     self = [super init];
@@ -167,13 +167,13 @@ static const double PRUNE = 30.0;
         newPeer.key = [_appDelegate.cryptoManager addPublicKey:[[NSKeyedUnarchiver unarchiveObjectWithData:context] objectAtIndex:0] withTag:peerID.displayName];
         newPeer.displayName = peerID.displayName;
         [_foundProtests setObject:newPeer forKey:peerID.displayName];
-        BOOL shouldAccept = ([_userID compare:peerID.displayName] == NSOrderedDescending);
+      //  BOOL shouldAccept = ([_userID compare:peerID.displayName] == NSOrderedDescending);
         invitationHandler(YES, newPeer.session);
     }
 }
 
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    NSLog(@"peer did change state: %ld", state);
+    NSLog(@"peer did change state: %d", state);
     if (state == MCSessionStateConnected) {
         NSLog(@"connected");
         Peer *peer = [_foundProtests objectForKey:peerID.displayName];
@@ -664,7 +664,7 @@ static const double PRUNE = 30.0;
 }
 
 - (void)messageExpired:(Message *)message {
-    [self sendMessage:message.message];
+    //[self sendMessage:message.message];
     [_allMessages removeObjectForKey:message.hash];
 }
 

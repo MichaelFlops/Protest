@@ -47,7 +47,6 @@
 - (void)startProtest:(NSString*)name password:(NSString*)password;
 - (void)sendMessage:(id)message toPeer:(Peer*)peer;
 - (void)sendMessage:(Message*)message;
-- (void)pruneTree;
 - (void)searchForProtests;
 - (void)disconnectFromPeers;
 - (void)testMessageSending;

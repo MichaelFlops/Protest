@@ -80,7 +80,9 @@ const char * __attribute__((pure)) errSecGetNameFromStatus(OSStatus errorCode) {
     }
 }
 
+
 @implementation CryptoManager
+
 
 - (instancetype)init
 {
@@ -135,9 +137,8 @@ const char * __attribute__((pure)) errSecGetNameFromStatus(OSStatus errorCode) {
     
     NSMutableData *cipherText = [NSMutableData new];
     for (NSUInteger i = 0; i < [plainText length]; i += blockSize) {
-        NSData *subPlainText = [plainText subdataWithRange:NSMakeRange(i, MIN(blockSize, [plainText length] - i))];
         size_t cipherTextLength = blockSizeIncludingPadding;
-        OSStatus status = SecKeyRawSign(key, kSecPaddingPKCS1, [subPlainText bytes], [subPlainText length], buffer, &cipherTextLength);
+       // OSStatus status = SecKeyRawSign(key, kSecPaddingPKCS1, [subPlainText bytes], [subPlainText length], buffer, &cipherTextLength);
         [cipherText appendBytes:buffer length:cipherTextLength];
     }
     free(buffer);
